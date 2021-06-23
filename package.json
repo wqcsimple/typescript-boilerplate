@@ -1,18 +1,45 @@
 {
   "name": "ts-api-demo",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "ts api demo",
-  "main": "index.js",
-  "author": "whis",
+  "author": "whis <admin@wwhis.com>",
   "license": "MIT",
+  "keywords": [
+    "typescript",
+    "boilerplate",
+    "esbuild"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wqcsimple/generate-page-util.git"
+  },
+  "main": "./dist/tsc/main.js",
+  "module": "./dist/tsc/main.js",
+  "files": [
+    "dist/"
+  ],
+  "types": "./dist/tsc/main.d.ts",
+  "browser": "./dist/esbuild/browser.js",
   "scripts": {
     "cli": "ts-node src/cli.ts",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "clean": "rm -rf dist build package",
+    "ts-node": "ts-node",
+    "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
-    "clean": "rm -rf dist build",
-    "ts-node": "ts-node"
+    "build-all": "yarn clean && yarn build && yarn esbuild-node && yarn esbuild-browser",
+    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
+    "esbuild-node": "esbuild src/cli.ts --bundle --platform=node --minify --sourcemap=external --outfile=dist/esbuild/cli.js",
+    "esbuild-node:dev": "esbuild src/cli.ts --bundle --sourcemap=external --outfile=dist/esbuild/cli.js",
+    "esbuild-node:watch": "esbuild src/cli.ts --bundle --watch --sourcemap=external --outfile=dist/esbuild/cli.js"
   },
+  "bugs": {
+    "url": "https://github.com/wqcsimple/typescript-boilerplate/issues"
+  },
+  "homepage": "https://github.com/wqcsimple/typescript-boilerplate#readme",
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.4",
@@ -23,6 +50,7 @@
     "jest": "^27.0.5",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
+    "typedoc": "^0.21.0",
     "typescript": "^4.3.4"
   }
 }

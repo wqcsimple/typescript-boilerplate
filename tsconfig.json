@@ -29,6 +29,7 @@
     ]
   },
   "include": [
+    "dist/**/**.js",
     "src/**/*.ts"
   ],
   "exclude": [

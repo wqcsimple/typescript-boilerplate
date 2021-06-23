@@ -10,7 +10,7 @@ interface LoginResponse {
     avatar: string
 }
 
-class UserApi {
+export class UserApiModule {
     constructor() {
     }
 
@@ -22,7 +22,6 @@ class UserApi {
 
         return {avatar: "", name: "", token: ""}
     }
-
 }
 
-export default new UserApi()
+
