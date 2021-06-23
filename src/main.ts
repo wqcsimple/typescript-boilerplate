@@ -14,3 +14,7 @@ export const foo = async (): Promise<boolean> => {
 
 export const UserApi = new UserApiModule()
 export const OrderApi = new OrderApiModule()
+export default {
+    UserApi,
+    OrderApi
+}
